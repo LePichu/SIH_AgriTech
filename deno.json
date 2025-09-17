@@ -1,0 +1,9 @@
+{
+	"fmt": {
+		"useTabs": true,
+		"semiColons": false
+	},
+	"tasks": {
+		"serve": "deno run -A ./api/server.ts"
+	}
+}

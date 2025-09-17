@@ -1,0 +1,264 @@
+[
+	{
+		"name": "Rice",
+		"localName": "Dhan",
+		"growthCycleDays": 120,
+		"estimatedInputCostPerHectare": 35000,
+		"baseYieldPerHectare": 45,
+		"compatibleIntercrops": [
+			"Lentil",
+			"Berseem"
+		],
+		"commonRisks": [
+			"Stem Borer",
+			"Brown Plant Hopper",
+			"Blast"
+		],
+		"varieties": [
+			{
+				"name": "IR-64",
+				"yieldModifier": 1.0,
+				"resistances": [
+					"Blast"
+				]
+			},
+			{
+				"name": "Sahbhagi Dhan",
+				"yieldModifier": 0.85,
+				"resistances": [
+					"Drought-Tolerant"
+				]
+			}
+		],
+		"optimalSoil": {
+			"ph": [
+				5.5,
+				6.5
+			],
+			"moisture": "High",
+			"nutrients": {
+				"nitrogen": "High",
+				"phosphorus": "Medium",
+				"potassium": "Medium"
+			}
+		},
+		"optimalWeather": {
+			"temperatureCelsius": [
+				21,
+				37
+			],
+			"rainfallMM": [
+				1000,
+				2000
+			],
+			"season": [
+				"Kharif"
+			]
+		},
+		"marketData": {
+			"avgPricePerQuintal": 2050,
+			"demand": "High"
+		},
+		"sustainabilityFactors": {
+			"waterUsage": "High",
+			"soilImpact": "High N-P-K Uptake",
+			"pesticideRequirement": "Medium"
+		}
+	},
+	{
+		"name": "Maize",
+		"localName": "Makai",
+		"growthCycleDays": 110,
+		"estimatedInputCostPerHectare": 30000,
+		"baseYieldPerHectare": 60,
+		"compatibleIntercrops": [
+			"Cowpea",
+			"Soybean",
+			"Groundnut"
+		],
+		"commonRisks": [
+			"Fall Armyworm",
+			"Stem Borer"
+		],
+		"varieties": [
+			{
+				"name": "Pioneer 3396",
+				"yieldModifier": 1.1,
+				"resistances": [
+					"Lodging"
+				]
+			},
+			{
+				"name": "DHM 117",
+				"yieldModifier": 1.0,
+				"resistances": []
+			}
+		],
+		"optimalSoil": {
+			"ph": [
+				5.8,
+				6.8
+			],
+			"moisture": "Moderate",
+			"nutrients": {
+				"nitrogen": "High",
+				"phosphorus": "High",
+				"potassium": "Medium"
+			}
+		},
+		"optimalWeather": {
+			"temperatureCelsius": [
+				21,
+				27
+			],
+			"rainfallMM": [
+				500,
+				800
+			],
+			"season": [
+				"Kharif",
+				"Rabi"
+			]
+		},
+		"marketData": {
+			"avgPricePerQuintal": 1950,
+			"demand": "High"
+		},
+		"sustainabilityFactors": {
+			"waterUsage": "Medium",
+			"soilImpact": "High Nitrogen Uptake",
+			"pesticideRequirement": "Medium"
+		}
+	},
+	{
+		"name": "Chickpea",
+		"localName": "Chana",
+		"growthCycleDays": 105,
+		"estimatedInputCostPerHectare": 22000,
+		"baseYieldPerHectare": 15,
+		"compatibleIntercrops": [
+			"Mustard",
+			"Linseed",
+			"Coriander"
+		],
+		"commonRisks": [
+			"Pod Borer",
+			"Wilt",
+			"Rust"
+		],
+		"varieties": [
+			{
+				"name": "Pusa 256",
+				"yieldModifier": 1.0,
+				"resistances": [
+					"Wilt"
+				]
+			},
+			{
+				"name": "Avarodhi",
+				"yieldModifier": 0.95,
+				"resistances": [
+					"Wilt-Resistant"
+				]
+			}
+		],
+		"optimalSoil": {
+			"ph": [
+				6.0,
+				7.5
+			],
+			"moisture": "Low",
+			"nutrients": {
+				"nitrogen": "Low",
+				"phosphorus": "Medium",
+				"potassium": "Medium"
+			}
+		},
+		"optimalWeather": {
+			"temperatureCelsius": [
+				15,
+				25
+			],
+			"rainfallMM": [
+				300,
+				500
+			],
+			"season": [
+				"Rabi"
+			]
+		},
+		"marketData": {
+			"avgPricePerQuintal": 5200,
+			"demand": "High"
+		},
+		"sustainabilityFactors": {
+			"waterUsage": "Low",
+			"soilImpact": "Nitrogen Fixing",
+			"pesticideRequirement": "Low"
+		}
+	},
+	{
+		"name": "Mustard",
+		"localName": "Sarso",
+		"growthCycleDays": 115,
+		"estimatedInputCostPerHectare": 25000,
+		"baseYieldPerHectare": 20,
+		"compatibleIntercrops": [
+			"Chickpea",
+			"Wheat"
+		],
+		"commonRisks": [
+			"Aphids",
+			"Alternaria Blight",
+			"White Rust"
+		],
+		"varieties": [
+			{
+				"name": "Pusa Bold",
+				"yieldModifier": 1.0,
+				"resistances": []
+			},
+			{
+				"name": "RH-749",
+				"yieldModifier": 1.1,
+				"resistances": [
+					"Shattering-Tolerant"
+				]
+			}
+		],
+		"optimalSoil": {
+			"ph": [
+				6.0,
+				7.5
+			],
+			"moisture": "Low",
+			"nutrients": {
+				"nitrogen": "Medium",
+				"phosphorus": "Medium",
+				"potassium": "Low"
+			}
+		},
+		"optimalWeather": {
+			"temperatureCelsius": [
+				10,
+				25
+			],
+			"rainfallMM": [
+				250,
+				400
+			],
+			"season": [
+				"Rabi"
+			]
+		},
+		"marketData": {
+			"avgPricePerQuintal": 5400,
+			"demand": "Medium"
+		},
+		"sustainabilityFactors": {
+			"waterUsage": "Low",
+			"soilImpact": "Neutral",
+			"pesticideRequirement": "Medium"
+		}
+	}
+]

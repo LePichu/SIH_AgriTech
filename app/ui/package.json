@@ -1,0 +1,20 @@
+{
+	"name": "@helios/ui",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"openai": "^4.52.2",
+		"solid-js": "^1.8.17"
+	},
+	"devDependencies": {
+		"typescript": "^5.4.5",
+		"vite": "^5.2.13",
+		"vite-plugin-solid": "^2.10.2"
+	}
+}
