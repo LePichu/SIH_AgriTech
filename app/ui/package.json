@@ -9,10 +9,12 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"marked": "^16.3.0",
 		"openai": "^4.52.2",
 		"solid-js": "^1.8.17"
 	},
 	"devDependencies": {
+		"@types/marked": "^6.0.0",
 		"typescript": "^5.4.5",
 		"vite": "^5.2.13",
 		"vite-plugin-solid": "^2.10.2"

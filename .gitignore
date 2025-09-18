@@ -3,3 +3,6 @@
 
 node_modules
 node_modules/**/*
+
+model/bin
+model/bin/*

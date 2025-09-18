@@ -22,6 +22,7 @@
 	border-radius: 18px;
 	max-width: 70%;
 	line-height: 1.5;
+	word-wrap: break-word;
 }
 
 .userMessage {
@@ -38,6 +39,12 @@
 	border-bottom-left-radius: 4px;
 }
 
+.userMessage img {
+	max-width: 100%;
+	border-radius: 10px;
+	margin-top: 8px;
+}
+
 .loadingIndicator {
 	align-self: flex-start;
 	color: #65676b;
@@ -49,6 +56,49 @@
 	padding: 10px;
 	border-top: 1px solid #ddd;
 	background-color: #ffffff;
+	align-items: center;
+}
+
+.micButton {
+	border: none;
+	background-color: #dc3545;
+	color: white;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	margin-right: 10px;
+	font-size: 24px;
+	font-weight: bold;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.micButton.idle {
+	background-color: #007bff;
+}
+
+.fileInputHidden {
+	display: none;
+}
+
+.filePickerLabel {
+	border: none;
+	background-color: #007bff;
+	color: white;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	margin-right: 10px;
+	font-size: 24px;
+	font-weight: bold;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
 }
 
 .chatInput {
@@ -66,6 +116,7 @@
 	color: white;
 	border-radius: 20px;
 	padding: 0 20px;
+	height: 42px;
 	margin-left: 10px;
 	font-size: 16px;
 	cursor: pointer;
@@ -75,4 +126,66 @@
 .sendButton:disabled {
 	background-color: #a0c3e0;
 	cursor: not-allowed;
+}
+
+.markdownOutput {
+	color: #050505;
+}
+
+.markdownOutput p {
+	margin: 0 0 8px 0;
+}
+
+.markdownOutput ul, .markdownOutput ol {
+	padding-left: 20px;
+	margin: 8px 0;
+}
+
+.markdownOutput li {
+	margin-bottom: 4px;
+}
+
+.markdownOutput pre {
+	background-color: #2d2d2d;
+	color: #f8f8f2;
+	padding: 12px;
+	border-radius: 8px;
+	overflow-x: auto;
+	font-family: "Courier New", Courier, monospace;
+}
+
+.markdownOutput code {
+	font-family: "Courier New", Courier, monospace;
+	background-color: #e0e0e0;
+	padding: 2px 4px;
+	border-radius: 4px;
+	font-size: 0.9em;
+}
+
+.markdownOutput pre code {
+	background-color: transparent;
+	padding: 0;
+}
+
+.markdownOutput blockquote {
+	border-left: 3px solid #ccc;
+	padding-left: 15px;
+	margin: 10px 0;
+	color: #555;
+}
+
+.audioFileButton {
+	border: none;
+	background-color: #007bff; /* New color */
+	color: white;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	margin-right: 10px;
+	font-size: 20px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
 }
