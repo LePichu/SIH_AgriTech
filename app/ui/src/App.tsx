@@ -1,4 +1,4 @@
-import { createSignal, For, createResource } from "solid-js"
+import { createResource, createSignal, For } from "solid-js"
 import type { Component } from "solid-js"
 import OpenAI from "openai"
 import { marked } from "marked"
@@ -6,7 +6,12 @@ import styles from "./App.module.css"
 
 interface ChatMessage {
 	role: "user" | "assistant" | "system"
-	content: string | (string | { type: "image_url", image_url: { url: string } } | { type: "text", text: string })[]
+	content:
+		| string
+		| (string | { type: "image_url"; image_url: { url: string } } | {
+			type: "text"
+			text: string
+		})[]
 	imagePreview?: string
 }
 
@@ -37,14 +42,18 @@ const App: Component = () => {
 			setIsRecording(false)
 		} else {
 			try {
-				const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+				const stream = await navigator.mediaDevices.getUserMedia({
+					audio: true,
+				})
 				setIsRecording(true)
 				audioChunks = []
 				mediaRecorder = new MediaRecorder(stream)
 				mediaRecorder.ondataavailable = (event) => audioChunks.push(event.data)
 				mediaRecorder.onstop = async () => {
 					const audioBlob = new Blob(audioChunks, { type: "audio/wav" })
-					const audioFile = new File([audioBlob], "recording.wav", { type: "audio/wav" })
+					const audioFile = new File([audioBlob], "recording.wav", {
+						type: "audio/wav",
+					})
 					const formData = new FormData()
 					formData.append("file", audioFile)
 					formData.append("response_format", "json")
@@ -62,7 +71,7 @@ const App: Component = () => {
 						console.error("Transcription error:", error)
 					} finally {
 						setIsLoading(false)
-						stream.getTracks().forEach(track => track.stop())
+						stream.getTracks().forEach((track) => track.stop())
 					}
 				}
 				mediaRecorder.start()
@@ -80,7 +89,7 @@ const App: Component = () => {
 		const formData = new FormData()
 		formData.append("file", file)
 		formData.append("response_format", "json")
-		
+
 		try {
 			setIsLoading(true)
 			const response = await fetch("http://localhost:8000/transcribe", {
@@ -96,7 +105,7 @@ const App: Component = () => {
 		} finally {
 			setIsLoading(false)
 		}
-		
+
 		target.value = ""
 	}
 
@@ -111,7 +120,7 @@ const App: Component = () => {
 			}
 			reader.readAsDataURL(file)
 		}
-		
+
 		target.value = ""
 	}
 
@@ -123,8 +132,15 @@ const App: Component = () => {
 		let userContent
 		let userMessageForUi: ChatMessage
 		if (userImage) {
-			userContent = [ { type: "text", text: userText }, { type: "image_url", image_url: { url: userImage } } ]
-			userMessageForUi = { role: "user", content: userText, imagePreview: userImage }
+			userContent = [{ type: "text", text: userText }, {
+				type: "image_url",
+				image_url: { url: userImage },
+			}]
+			userMessageForUi = {
+				role: "user",
+				content: userText,
+				imagePreview: userImage,
+			}
 		} else {
 			userContent = userText
 			userMessageForUi = { role: "user", content: userText }
@@ -133,10 +149,16 @@ const App: Component = () => {
 		setMessages(newMessages)
 		setUserInput("")
 		setImageBase64("")
-		const apiMessages = [...messages().map(({ role, content }) => ({ role, content })), { role: "user", content: userContent }]
+		const apiMessages = [
+			...messages().map(({ role, content }) => ({ role, content })),
+			{ role: "user", content: userContent },
+		]
 		let messagesWithContext = apiMessages
 		if (messages().length === 1) {
-			const systemPrompt: ChatMessage = { role: "system", content: contextData() || "You are a helpful assistant." }
+			const systemPrompt: ChatMessage = {
+				role: "system",
+				content: contextData() || "You are a helpful assistant.",
+			}
 			messagesWithContext = [systemPrompt, ...apiMessages]
 		}
 		setIsLoading(true)
@@ -152,7 +174,10 @@ const App: Component = () => {
 			}
 		} catch (error) {
 			console.error("Error fetching completion:", error)
-			setMessages([...newMessages, { role: "assistant", content: "Sorry, I couldn't get a response." }])
+			setMessages([...newMessages, {
+				role: "assistant",
+				content: "Sorry, I couldn't get a response.",
+			}])
 		} finally {
 			setIsLoading(false)
 		}
@@ -163,21 +188,40 @@ const App: Component = () => {
 			<div class={styles.chatWindow}>
 				<For each={messages()}>
 					{(message) => (
-						<div class={message.role === "user" ? styles.userMessage : styles.assistantMessage}>
-							{message.role === "assistant" ? (
-								<div class={styles.markdownOutput} innerHTML={marked.parse(message.content as string)} />
-							) : (
-								message.content
+						<div
+							class={message.role === "user"
+								? styles.userMessage
+								: styles.assistantMessage}
+						>
+							{message.role === "assistant"
+								? (
+									<div
+										class={styles.markdownOutput}
+										innerHTML={marked.parse(message.content as string)}
+									/>
+								)
+								: (
+									message.content
+								)}
+							{message.imagePreview && (
+								<img src={message.imagePreview} alt="User upload preview" />
 							)}
-							{message.imagePreview && <img src={message.imagePreview} alt="User upload preview"/>}
 						</div>
 					)}
 				</For>
-				{contextData.loading && <div class={styles.loadingIndicator}>Loading Helios context...</div>}
-				{isLoading() && <div class={styles.loadingIndicator}>Helios is thinking...</div>}
+				{contextData.loading && (
+					<div class={styles.loadingIndicator}>Loading Helios context...</div>
+				)}
+				{isLoading() && (
+					<div class={styles.loadingIndicator}>Helios is thinking...</div>
+				)}
 			</div>
 			<form class={styles.chatForm} onSubmit={handleSendMessage}>
-				<button type="button" class={`${styles.micButton} ${!isRecording() ? styles.idle : ""}`} onClick={handleMicClick}>
+				<button
+					type="button"
+					class={`${styles.micButton} ${!isRecording() ? styles.idle : ""}`}
+					onClick={handleMicClick}
+				>
 					!
 				</button>
 				<label for="audio-picker" class={styles.audioFileButton}>
@@ -206,7 +250,11 @@ const App: Component = () => {
 					onInput={(e) => setUserInput(e.currentTarget.value)}
 					disabled={isLoading() || contextData.loading}
 				/>
-				<button type="submit" class={styles.sendButton} disabled={isLoading() || contextData.loading}>
+				<button
+					type="submit"
+					class={styles.sendButton}
+					disabled={isLoading() || contextData.loading}
+				>
 					Send
 				</button>
 			</form>

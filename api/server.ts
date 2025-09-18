@@ -5,11 +5,14 @@ const app = new Hono()
 const llamaServerUrl = "http://localhost:3000"
 const whisperServerUrl = "http://localhost:8081/inference"
 
-app.use("*", cors({
-	origin: "http://localhost:5173",
-	allowHeaders: ["*"],
-	allowMethods: ["POST", "GET", "OPTIONS"],
-}))
+app.use(
+	"*",
+	cors({
+		origin: "http://localhost:5173",
+		allowHeaders: ["*"],
+		allowMethods: ["POST", "GET", "OPTIONS"],
+	}),
+)
 
 app.post("/transcribe", async (c) => {
 	try {
@@ -39,7 +42,9 @@ app.get("/data", async (c) => {
 
 app.all("/llm/*", async (c) => {
 	const url = new URL(c.req.url)
-	const targetUrl = new URL(llamaServerUrl + url.pathname.replace("/llm", "") + url.search)
+	const targetUrl = new URL(
+		llamaServerUrl + url.pathname.replace("/llm", "") + url.search,
+	)
 	const newRequest = new Request(targetUrl, c.req.raw)
 	const llamaResponse = await fetch(newRequest)
 	const newHeaders = new Headers(llamaResponse.headers)
