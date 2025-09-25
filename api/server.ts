@@ -8,7 +8,7 @@ const whisperServerUrl = "http://localhost:8081/inference"
 app.use(
 	"*",
 	cors({
-		origin: "http://localhost:5173",
+		origin: "*",
 		allowHeaders: ["*"],
 		allowMethods: ["POST", "GET", "OPTIONS"],
 	}),
